@@ -109,7 +109,7 @@ fun main(){
         println("humidity decreased")
         if (humidityLevel <= 60){
             humidity = "comfy"
-            println("IT'S COMFY NOW")
+            println("IT'S COMFY")
         }
     }
 
