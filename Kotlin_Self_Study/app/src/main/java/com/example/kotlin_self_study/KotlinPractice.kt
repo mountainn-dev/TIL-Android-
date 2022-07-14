@@ -69,7 +69,7 @@ fun main(){
 
     val x : Any = 13.37
 //assign when to a variable
-    val result =  when(x) {
+    var result =  when(x) {
 //let condition for each block be only a string
         is Int -> "is an Int"
         !is Double -> "is not Double"
@@ -112,7 +112,24 @@ fun main(){
             println("IT'S COMFY")
         }
     }
+    result = myAverage(2.0F, 3)
+    println(result)
+    // nullable
+    var nullableName: String? = null
+    var nameLength = nullableName?.length
+    println(nameLength)
+    var lowCaseName = nullableName?.toLowerCase()
+    print("$nameLength $lowCaseName")
+    nullableName?.let { print("\nIT'S NOT NULL!") }
+
+    // 앨비스 연산자
+    nullableName = null
+    val userName = nullableName ?: "User"
+    println("\n$userName")
 
 
 }
-
+// function
+fun myAverage(a: Float, b: Int): Float {
+    return (a+b)/2
+}
