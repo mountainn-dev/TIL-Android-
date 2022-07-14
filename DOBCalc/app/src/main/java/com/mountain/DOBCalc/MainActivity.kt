@@ -10,55 +10,46 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
-    private var tvDate: TextView? = null   // private 설정을 해두면 메인액티비티 내 다른 클래스에서 사용불가
-    private var tvTime: TextView? = null
+    private lateinit var tvTime: TextView   //
+    private lateinit var tvDate: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val btnDate: Button = findViewById(R.id.btnDate)
-        tvDate = findViewById(R.id.tvDate)
         tvTime = findViewById(R.id.tvTime)
+        tvDate = findViewById(R.id.tvDate)
+
         btnDate.setOnClickListener {
-            clickDate()
+            datePick()
         }
     }
 
-    private fun clickDate() {   // 메서드를 private 접근제한으로 설정하여, 다른 클래스에서 접근 불가(오작동 방지)
+    private fun datePick() {   // 클래스 객체지향 특성을 위해 메서드화 한다. onCreate 메서드에 일일이 적지 않음.
         val myCalendar = Calendar.getInstance()
         val year = myCalendar.get(Calendar.YEAR)
         val month = myCalendar.get(Calendar.MONTH)
-        val day = myCalendar.get(Calendar.DAY_OF_MONTH)
-        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener {
-                view, selectedYear, selectedMonth, selectedDay ->
-            Toast.makeText(this, "Year was ${selectedYear}, month was ${selectedMonth+1}," +
-                    " day of month was ${selectedDay}",
-                Toast.LENGTH_LONG).show()
-            val selectedDate = "${selectedDay}/${selectedMonth+1}/${selectedYear}"
-            tvDate?.setText(selectedDate)
-            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)
-            val theDate = sdf.parse(selectedDate)
-                theDate?.let{
-                    val selectedDateInMinutes = theDate.time / 60000   // 1970.1.1 부터 선택된 날짜까지의
-                    // ms 단위 시간을 10000 나누어 초 단위, 60 나누어 분 단위로 환산
-                    val currentDate = sdf.parse(sdf.format(System.currentTimeMillis()))
-                        currentDate?.let{
-                            val currentDateInMinutes = currentDate.time / 60000   // 1970.1.1 부터 현재 날짜까지 환산
+        val dayOfMonth = myCalendar.get(Calendar.DAY_OF_MONTH)
 
-                            // 위 코드랑 뭐가 다른지 확인 필요
-                            // val currentDateInMinutes2 = System.currentTimeMillis() / 60000
+        val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
+            Toast.makeText(this, "You Selected ${selectedYear}/${selectedMonth+1}/${selectedDay}", Toast.LENGTH_LONG).show()
+            val selectedDate = "${selectedDay}/${selectedMonth+1}/${selectedYear}"   // 람다식, 달력에서 날짜를 선택하면 해당 값들이 selected 변수로 할당되고
+            // 변수 값들이 인수로써 '->' 뒤에 함수에 사용된다. 맨 뒤 year month 등은 현재 날짜를 표시하는데 사용
+            tvDate.text = selectedDate
 
-                            val differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
-                            tvTime?.setText("${differenceInMinutes}")
-                        }
+            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)   // 문자열을 데이트 형태로 변환
+            val theDate = sdf.parse(selectedDate) ?: return@OnDateSetListener   // null이면 onDateSetListner를 탈출
+            val currentDate = sdf.parse("${dayOfMonth}/${month+1}/${year}") ?: return@OnDateSetListener
+            val theDateInMinutes = theDate.time / 60000
+            val currentDateInMintues = currentDate.time / 60000
 
-                }
-
+            val differenceInMinutes = currentDateInMintues - theDateInMinutes
+            tvTime.text = differenceInMinutes.toString()
         },
-            year, month, day)   // 선택가능날짜를 제한하기 위해 .show()를 지우고 dpd 변수에 할당
-        dpd.datePicker.maxDate = System.currentTimeMillis() - 86400000
-        dpd.show()   // dpd datepicker 프로퍼티에 최대가능날짜를 입력하고 .show()
+            year, month, dayOfMonth) // show() 코드 꼭 입력! 단, show()의 return 타입이 Unit인데,
+        // 선택날짜 제한을 위해 datePicker 클래스를 사용하려면 datePickerDialog 타입이 되어야한다. 따라서, show()를 나중에 붙여준다.
+
+        dpd.datePicker.maxDate = System.currentTimeMillis()
+        dpd.show()
     }
 }
