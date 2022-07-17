@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/drawable/numbackground.xml" value="0.178" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/drawable/operatorbackground.xml" value="0.178" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/font/basic.xml" value="0.2838541666666667" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/layout/activity_main.xml" value="0.2390625" />
       </map>

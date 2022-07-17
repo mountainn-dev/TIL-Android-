@@ -15,10 +15,13 @@
     </style>
     <style name="NumButton">
         <item name="android:backgroundTint">@color/btnGray</item>
+        <item name="android:background">@drawable/numbackground</item>
         <item name="android:textSize">28sp</item>
     </style>
     <style name="OperatorButton">
         <item name="android:backgroundTint">@color/btnOrange</item>
         <item name="android:textSize">28sp</item>
+        <item name="android:background">@drawable/operatorbackground</item>
+
     </style>
 </resources>
