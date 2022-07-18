@@ -22,9 +22,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="end|center"
-            android:text="@string/calc_text"
-            android:textSize="40sp"
-            android:textColor="@color/txtSave"/>
+            android:textColor="@color/txtSave"
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/tvInput"
