@@ -4,10 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1765" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable/btnbox_bg.xml" value="0.1765" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable/editbox_bg.xml" value="0.1765" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable/editboxbackground.xml" value="0.1765" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable/editboxbg.xml" value="0.1765" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1765" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable/quizboxbg.xml" value="0.1765" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/drawable/selected_box_bg.xml" value="0.1765" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/font/txtoption.xml" value="0.2828125" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/layout/activity_finish.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/layout/activity_quizquestions.xml" value="0.2" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/layout/activity_quizquestions_1.xml" value="0.25364583333333335" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/layout/activity_quizquestions_2.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizApp/app/src/main/res/layout/activity_temp.xml" value="0.1125" />
       </map>
     </option>

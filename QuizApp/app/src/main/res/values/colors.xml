@@ -9,4 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="txtBlue">#284b63</color>
     <color name="txtGray">#adb5bd</color>
+    <color name="quizBoxBg">#dee2ff</color>
+    <color name="selectedBoxBg">#cbc0d3</color>
+    <color name="btnBoxBg">#6096ba</color>
+
 </resources>
