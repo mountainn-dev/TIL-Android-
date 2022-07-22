@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         if (binding.editName.text.isEmpty()) {
             Toast.makeText(this, "Enter your name", Toast.LENGTH_LONG).show()
         } else {
-            val intent = Intent(this, QuizQuestions1Activity::class.java)
+            val intent = Intent(this, QuizQuestions1Activity::class.java)   // 메인에서 퀴즈화면으로 넘어갈 때만 애니메이션 효과 추가
             startActivity(intent)
             overridePendingTransition(R.anim.horizon_enter, R.anim.none)
             finish()

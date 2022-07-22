@@ -19,7 +19,7 @@
             android:background="@drawable/quizbox_bg">
 
             <TextView
-                android:id="@+id/tvQuestion1"
+                android:id="@+id/tvQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -30,7 +30,7 @@
                 android:textStyle="bold"/>
 
             <ImageView
-                android:id="@+id/imgQuiz1"
+                android:id="@+id/imgQuestion"
                 android:layout_width="match_parent"
                 android:layout_height="170dp"
                 android:layout_marginStart="20dp"
@@ -44,14 +44,14 @@
                 android:gravity="center">
 
                 <TextView
-                    android:id="@+id/tvpgbarQuiz1"
+                    android:id="@+id/tvpgbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
                     android:textColor="@color/txtGray"/>
 
                 <ProgressBar
-                    android:id="@+id/pgbarQuiz1"
+                    android:id="@+id/pgbar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -67,7 +67,7 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
-                    android:id="@+id/tvQuiz1Option1"
+                    android:id="@+id/tvOption1"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
@@ -76,7 +76,7 @@
                     android:theme="@style/optionTxtStyle"/>
 
                 <TextView
-                    android:id="@+id/tvQuiz1Option2"
+                    android:id="@+id/tvOption2"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
@@ -85,7 +85,7 @@
                     android:theme="@style/optionTxtStyle"/>
 
                 <TextView
-                    android:id="@+id/tvQuiz1Option3"
+                    android:id="@+id/tvOption3"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
@@ -94,7 +94,7 @@
                     android:theme="@style/optionTxtStyle"/>
 
                 <TextView
-                    android:id="@+id/tvQuiz1Option4"
+                    android:id="@+id/tvOption4"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_margin="10dp"
