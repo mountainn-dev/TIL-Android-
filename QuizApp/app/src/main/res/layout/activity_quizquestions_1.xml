@@ -57,7 +57,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:indeterminate="false"
-                    android:max="2"
+                    android:max="3"
                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
 
             </LinearLayout>

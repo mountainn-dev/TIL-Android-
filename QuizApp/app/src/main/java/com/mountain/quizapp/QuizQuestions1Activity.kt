@@ -41,7 +41,7 @@ class QuizQuestions1Activity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun clickSubmit() {
-        if (mCurrentPosition == mQuestionList.size) {
+        if (mCurrentPosition == mQuestionList.size) {   // 마지막 퀴즈 문제일 경우
             binding.btnSubmit.text = "Finish"
         }
         else {
