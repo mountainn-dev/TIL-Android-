@@ -10,36 +10,48 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/quizbox_bg"
             android:layout_margin="40dp"
             android:gravity="center"
+            android:background="@drawable/quizbox_bg"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="Result"
+                android:theme="@style/questionTxtStyle"/>
+
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:adjustViewBounds="true"
                 android:cropToPadding="false"
                 android:scaleType="fitXY"
-                android:src="@drawable/finish_img" />
+                android:src="@drawable/tropy" />
 
             <TextView
-                android:id="@+id/tvFinish"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_margin="15dp"
-                android:padding="10dp"
-                android:text="Congraturltion!"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                android:textStyle="bold"/>
+                android:text="Congratulations!"
+                android:theme="@style/questionTxtStyle"/>
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="15dp"
+                android:theme="@style/questionTxtStyle"/>
+
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

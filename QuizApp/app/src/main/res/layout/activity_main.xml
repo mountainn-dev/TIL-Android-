@@ -51,10 +51,11 @@
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
                 android:paddingStart="20dp"
+                android:background="@drawable/editbox_bg"
                 android:hint="Name"
                 android:textColor="@color/black"
                 android:inputType="textCapWords"
-                android:background="@drawable/editbox_bg"/>
+                android:maxLength="15" />
 
             <Button
                 android:id="@+id/btnStart"

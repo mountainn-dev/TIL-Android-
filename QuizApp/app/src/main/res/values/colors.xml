@@ -12,5 +12,6 @@
     <color name="quizBoxBg">#dee2ff</color>
     <color name="selectedBoxBg">#cbc0d3</color>
     <color name="btnBoxBg">#6096ba</color>
-
+    <color name="wrongAnswer">#70FF0000</color>
+    <color name="correctAnswer">#168aad</color>
 </resources>

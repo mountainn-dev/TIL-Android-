@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_img"
-    tools:context=".QuizQuestions1Activity">
+    tools:context=".QuizQuestionsActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -110,7 +110,7 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/btnbox_bg"
-                    android:text="Submit"
+                    android:text="Show Answer"
                     android:theme="@style/optionTxtStyle"/>
 
             </LinearLayout>
