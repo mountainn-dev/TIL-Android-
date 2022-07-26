@@ -1,5 +1,6 @@
 package com.mountain.quizapp
 
+import android.content.Intent
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,12 +18,18 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private val mQuestionList = Constants.getQuestions()
     private var mSelectedOptionPosition = 1
     private var mbtnNum = 0
+    private var mCorrectAnswers = 0
+    // TODO: 액티비티 내 여러 메소드가 있기 때문에, intent 정보를 담을 username을 전역변수화하였지만,
+    //  Finish 액티비티는 별다른 메서드가 없기 때문에 onCreate 메서드 안에 변수를 만들어준다.
+    private lateinit var mUserName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityQuizquestions1Binding.inflate(layoutInflater)
         setContentView(binding.root)
         setQuestion()
+
+        mUserName = intent.getStringExtra(Constants.USER_NAME) ?: return
 
         // TODO: 여기부분 강의에서 this가 어떻게 onClick 메서드로 연결되는지?
         binding.tvOption1.setOnClickListener { onClick(binding.tvOption1) }
@@ -81,12 +88,16 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     mbtnNum += 1
     var question = mQuestionList[mCurrentPosition-1]
     var answer = question.correctAnswer
-    if (select == answer) setBg(select, R.drawable.correctanswer_bg)
+    if (select == answer) {
+        setBg(select, R.drawable.correctanswer_bg)
+        mCorrectAnswers++
+    }
     else {
         setBg(select, R.drawable.wronganswer_bg)
         setBg(answer, R.drawable.correctanswer_bg)
         }
-    binding.btnSubmit.text = "Submit Answer"
+    if (mCurrentPosition == mQuestionList.size) binding.btnSubmit.text = "Check Score"   // 마지막 문제일 경우
+    else binding.btnSubmit.text = "Submit Answer"
     }
     private fun setBg(num: Int, bgID: Int) {
         when(num) {
@@ -99,10 +110,14 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
     private fun submitAnswer() {
         mbtnNum += 1
-        if (mCurrentPosition == mQuestionList.size) {   // 마지막 퀴즈 문제일 경우
-            binding.btnSubmit.text = "Finish"
-        }
-        else {
+        if (mCurrentPosition == mQuestionList.size) {
+            val intent = Intent(this, FinishActivity::class.java)
+            intent.putExtra(Constants.USER_NAME, mUserName)
+            intent.putExtra(Constants.CORRECT_ANSWERS, mCorrectAnswers)
+            intent.putExtra(Constants.TOTAL_QUESTIONS, mQuestionList.size)
+            startActivity(intent)
+            finish()
+        } else {
             mCurrentPosition += 1
             setQuestion()
         }

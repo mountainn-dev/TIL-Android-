@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_margin="15dp"
+                android:layout_margin="10dp"
                 android:text="Congratulations!"
                 android:theme="@style/questionTxtStyle"/>
 
@@ -50,8 +50,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_margin="15dp"
                 android:theme="@style/questionTxtStyle"/>
+
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/txtGray"/>
+
+            <Button
+                android:id="@+id/btnFinish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:text="Finish"
+                android:textSize="20sp"/>
 
         </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

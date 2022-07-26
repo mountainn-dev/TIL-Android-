@@ -1,6 +1,11 @@
 package com.mountain.quizapp
 
 object Constants {   // object는 객체 생성 과정을 생략하고 곧바로 사용할 수 있는 클래스와 비슷한 개념
+
+    const val USER_NAME: String = "user name"   // 직접 스트링을 하드코딩하기보다, 이름으로 사용될 string을 변수화한다.
+    const val TOTAL_QUESTIONS: String = "total_questions"
+    const val CORRECT_ANSWERS: String = "correct_answers"
+
     fun getQuestions(): ArrayList<Question> {
         val questionList = ArrayList<Question>()
 
