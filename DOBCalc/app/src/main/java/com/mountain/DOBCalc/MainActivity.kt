@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var tvTime: TextView   //
+    private lateinit var tvTime: TextView
     private lateinit var tvDate: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,13 +33,13 @@ class MainActivity : AppCompatActivity() {
 
         val dpd = DatePickerDialog(this, DatePickerDialog.OnDateSetListener { _, selectedYear, selectedMonth, selectedDay ->
             Toast.makeText(this, "You Selected ${selectedYear}/${selectedMonth+1}/${selectedDay}", Toast.LENGTH_LONG).show()
-            val selectedDate = "${selectedDay}/${selectedMonth+1}/${selectedYear}"   // 람다식, 달력에서 날짜를 선택하면 해당 값들이 selected 변수로 할당되고
+            val selectedDate = "${selectedDay}.${selectedMonth+1}.${selectedYear}"   // 람다식, 달력에서 날짜를 선택하면 해당 값들이 selected 변수로 할당되고
             // 변수 값들이 인수로써 '->' 뒤에 함수에 사용된다. 맨 뒤 year month 등은 현재 날짜를 표시하는데 사용
             tvDate.text = selectedDate
 
-            val sdf = SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH)   // 문자열을 데이트 형태로 변환
+            val sdf = SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH)   // 문자열을 데이트 형태로 변환하기 위해 포맷 지정
             val theDate = sdf.parse(selectedDate) ?: return@OnDateSetListener   // null이면 onDateSetListner를 탈출
-            val currentDate = sdf.parse("${dayOfMonth}/${month+1}/${year}") ?: return@OnDateSetListener
+            val currentDate = sdf.parse("${dayOfMonth}.${month+1}.${year}") ?: return@OnDateSetListener   // 선택여부와 다르게, 애초에 parse메서드 값 자체가 null 문제가 있어서 그럼.
             val theDateInMinutes = theDate.time / 60000
             val currentDateInMintues = currentDate.time / 60000
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
             year, month, dayOfMonth) // show() 코드 꼭 입력! 단, show()의 return 타입이 Unit인데,
         // 선택날짜 제한을 위해 datePicker 클래스를 사용하려면 datePickerDialog 타입이 되어야한다. 따라서, show()를 나중에 붙여준다.
 
-        dpd.datePicker.maxDate = System.currentTimeMillis()
+        dpd.datePicker.maxDate = System.currentTimeMillis()   // datePicker 클래스는 datePickerDialog 타입만 받을 수 있다.
         dpd.show()
     }
 }

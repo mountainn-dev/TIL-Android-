@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/DOBCalc/app/src/main/res/drawable/textborder.xml" value="0.156" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/DOBCalc/app/src/main/res/drawable/viewborder.xml" value="0.1725" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/DOBCalc/app/src/main/res/font/fonts.xml" value="0.2838541666666667" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/DOBCalc/app/src/main/res/font/title.xml" value="0.2784615384615385" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/DOBCalc/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/DOBCalc/app/src/main/res/layout/activity_test2.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
