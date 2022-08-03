@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/drawable/bg_btn_double.xml" value="0.156" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/drawable/numbackground.xml" value="0.178" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/drawable/operatorbackground.xml" value="0.178" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/font/basic.xml" value="0.2838541666666667" />
-        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/layout/activity_main.xml" value="0.21472663139329806" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/layout/activity_main.xml" value="0.21014492753623187" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/numcalc/app/src/main/res/layout/activity_test_second.xml" value="0.264" />
       </map>
     </option>
   </component>

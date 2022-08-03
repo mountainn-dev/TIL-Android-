@@ -11,5 +11,6 @@
     <color name="btnGray">#adb5bd</color>
     <color name="btnOrange">#fca311</color>
     <color name="txtSave">#50adb5bd</color>
+    <color name="btnDarkGray">#232323</color>
 
 </resources>

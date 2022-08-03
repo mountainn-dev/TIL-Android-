@@ -14,13 +14,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         val myCalculator = NumCalculator()
     }
 
-    class NumCalculator() {
+    class NumCalculator {
         var isOperator = true   // 연산자 유무 확인용 변수. 초기값을 true로 두고, 이후 연산자가 입력될 수 있을 때만 false로 설정해준다.
         var isZero = false
+        val num: ArrayList<Any> = ArrayList()
+
         init {
             // 단순반복 setOnClickListner는 array와 for 루프로 처리
             val btnNumList = arrayOf<Button>(binding.btnOne, binding.btnTwo, binding.btnThree, binding.btnFour,
@@ -77,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         private fun onOperator(view: View) {   // 연산자 입력 직후 tvInput은 초기화, Save는 초기화x
             if (!isOperator) {
                 binding.tvInputSave.append((view as Button).text)
+                num.add(binding.tvInput.text.toString())
                 binding.tvInput.text = "0"
                 isOperator = true
             }
@@ -89,7 +91,6 @@ class MainActivity : AppCompatActivity() {
 
         private fun onEqual(view: View) {
             binding.tvInputSave.append((view as Button).text)
-            val result = binding.tvInputSave.text.toString()
+            }
         }
     }
-}

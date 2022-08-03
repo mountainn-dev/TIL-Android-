@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Numcalc" parent="Theme.MaterialComponents.NoActionBar">
+    <style name="Theme.Numcalc" parent="Theme.AppCompat.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/btnGray</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -14,14 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="NumButton">
-        <item name="android:backgroundTint">@color/btnGray</item>
-        <item name="android:background">@drawable/numbackground</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
-    <style name="OperatorButton">
-        <item name="android:backgroundTint">@color/btnOrange</item>
-        <item name="android:textSize">28sp</item>
-        <item name="android:background">@drawable/operatorbackground</item>
-
+    <style name="ButtonText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>
