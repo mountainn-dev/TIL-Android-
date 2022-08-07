@@ -36,5 +36,6 @@ class TestSecondActivity : AppCompatActivity() {
             )
         }
         binding.btnCLR.setOnClickListener { NumCalc.selectCLR(binding.tvNum) }
+        binding.btnPercent.setOnClickListener { NumCalc.selectPercent(binding.tvNum) }
     }
 }

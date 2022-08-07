@@ -12,6 +12,8 @@ object NumCalc {
     var mSaveNum = 0
     var mResult = 0
     var mSymbol = ""
+    var mPercent = false
+    var mStatus = true
 
     fun selectNumber(button: Button, text: TextView) {
         if (text.text.toString() == "0") {
@@ -43,6 +45,9 @@ object NumCalc {
                 "*" -> mSaveNum = mFirstNum * mSecondNum
                 "÷" -> mSaveNum = mFirstNum / mSecondNum
             }
+            mFirstNum = mSaveNum
+            // mSaveNum을 임시 저장공간으로만 활용하고 곧바로 mFirstNum으로 값을 재할당해주면서
+            // 중간연산을 마무리지어준다.
             mSymbol = button.text.toString()
         }
         text.text = "0"
@@ -59,12 +64,32 @@ object NumCalc {
         }
         else {
             when (mSymbol) {
-                "+" -> mResult = mSaveNum + text.text.toString().toInt()
-                "-" -> mResult = mSaveNum - text.text.toString().toInt()
-                "*" -> mResult = mSaveNum * text.text.toString().toInt()
-                "÷" -> mResult = mSaveNum / text.text.toString().toInt()
+                "+" -> mResult = mFirstNum + text.text.toString().toInt()
+                "-" -> mResult = mFirstNum - text.text.toString().toInt()
+                "*" -> mResult = mFirstNum * text.text.toString().toInt()
+                "÷" -> mResult = mFirstNum / text.text.toString().toInt()
             }
             text.text = "$mResult"
         }
     }
+    fun selectPercent(text: TextView) {
+        val number = text.text.toString().toInt()
+        if (!mPercent) {
+            text.text = (number * 100).toString()
+            mPercent = true
+        }
+        else {
+            text.text = (number / 100).toString()
+            mPercent = false
+        }
+    }
+//    fun selectChange(text: TextView) {
+//        if (mStatus) {
+//            text.append("-")
+//            mStatus = false
+//        }
+//        else {
+//            mStatus = true
+//        }
+//    }
 }
