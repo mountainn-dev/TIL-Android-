@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image_sunrise"
+    tools:context=".QuizActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="50dp"
+        app:cardCornerRadius="10dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/tvQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    tools:text="Question"
+                    android:maxLines="2"
+                    android:textAppearance="@style/titleFont"/>
+
+                <ImageView
+                    android:id="@+id/imgQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:adjustViewBounds="true"/>
+
+                <ProgressBar
+                    android:id="@+id/pgBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:max="4"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:indeterminate="false"/>
+
+                <TextView
+                    android:id="@+id/tvOpt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:background="@drawable/border_editbox"
+                    tools:text="test"
+                    android:maxLines="1"
+                    android:textAppearance="@style/optFont" />
+
+                <TextView
+                    android:id="@+id/tvOpt2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:background="@drawable/border_editbox"
+                    tools:text="test"
+                    android:maxLines="1"
+                    android:textAppearance="@style/optFont" />
+
+                <TextView
+                    android:id="@+id/tvOpt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:background="@drawable/border_editbox"
+                    tools:text="test"
+                    android:maxLines="1"
+                    android:textAppearance="@style/optFont" />
+
+                <TextView
+                    android:id="@+id/tvOpt4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:padding="6dp"
+                    android:background="@drawable/border_editbox"
+                    tools:text="test"
+                    android:maxLines="1"
+                    android:textAppearance="@style/optFont" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnCheckAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:padding="5dp"
+                    android:background="@drawable/background_button"
+                    android:textAppearance="@style/btnFont"/>
+            </LinearLayout>
+        </ScrollView>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
