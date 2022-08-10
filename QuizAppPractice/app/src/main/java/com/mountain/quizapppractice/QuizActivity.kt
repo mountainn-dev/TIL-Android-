@@ -20,7 +20,7 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             binding.tvQuestion, binding.imgQuestion, binding.pgBar, binding.tvPg, binding.tvOpt1,
             binding.tvOpt2, binding.tvOpt3, binding.tvOpt4, binding.btnCheckAnswer
         )
-        // TODO: 오브젝트에서 mCurrent 변수를 증가시키면 왜 튕기는지??
+        // TODO: 오브젝트에서 mCurrent 변수를 증가시키면 왜 튕기는지?? -> 해결완료
 
         binding.btnCheckAnswer.setOnClickListener {
             if (mCurrentPosition == binding.pgBar.max) {

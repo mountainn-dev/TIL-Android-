@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.QuizAppPractice" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.QuizAppPractice" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -31,5 +31,10 @@
     <style name="btnFont">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/white</item>
+    </style>
+    <style name="logoFont">
+        <item name="android:textSize">50sp</item>
+        <item name="android:textColor">#6c584c</item>
+        <item name="fontFamily">@font/lemon</item>
     </style>
 </resources>

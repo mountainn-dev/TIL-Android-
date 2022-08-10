@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnStart.setOnClickListener {
+        binding.btnQuizStart.setOnClickListener {
             val intent = Intent(this, QuizActivity::class.java)
             intent.putExtra("Name", binding.editName.text.toString())
             startActivity(intent)
