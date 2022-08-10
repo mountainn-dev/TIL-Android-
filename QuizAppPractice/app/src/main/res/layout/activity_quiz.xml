@@ -10,7 +10,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="50dp"
+        android:layout_margin="40dp"
         app:cardCornerRadius="10dp">
 
         <ScrollView
@@ -39,6 +39,12 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
                     android:adjustViewBounds="true"/>
+
+                <TextView
+                    android:id="@+id/tvPg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/tipFont"/>
 
                 <ProgressBar
                     android:id="@+id/pgBar"

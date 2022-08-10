@@ -12,4 +12,6 @@
     <color name="gray">#adb5bd</color>
     <color name="orange">#f4a261</color>
     <color name="yellow">#e9c46a</color>
+    <color name="correctGreen">#2a9d8f</color>
+    <color name="wrongRed">#e63946</color>
 </resources>

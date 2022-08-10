@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/drawable/background_button.xml" value="0.156" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/drawable/background_correct.xml" value="0.156" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/drawable/background_wrong.xml" value="0.156" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/drawable/border_editbox.xml" value="0.156" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/drawable/border_optionbox.xml" value="0.156" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/drawable/border_selected_opt.xml" value="0.156" />
+        <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/layout/activity_finish.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/layout/activity_main.xml" value="0.2390625" />
         <entry key="..\:/Users/HongSeongSan/AndroidStudioProjects/QuizAppPractice/app/src/main/res/layout/activity_quiz.xml" value="0.25364583333333335" />
       </map>
