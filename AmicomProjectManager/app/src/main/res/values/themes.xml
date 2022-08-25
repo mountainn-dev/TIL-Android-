@@ -26,4 +26,8 @@
         <item name="android:fontFamily">@font/cafe</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="contentFont3">
+        <item name="android:fontFamily">@font/micegothic</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

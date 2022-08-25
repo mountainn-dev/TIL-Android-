@@ -25,7 +25,7 @@
             style="?android:attr/borderlessButtonStyle"
             android:background="@android:color/transparent"
             android:text="@string/go_back_sign"
-            android:textSize="25sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="@color/titleColor"
             />
@@ -50,41 +50,54 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/tvSemester"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            tools:text="학기"
-            android:textAppearance="@style/contentFont2"
-            android:textSize="25sp"/>
-
-        <TextView
             android:id="@+id/tvProjectName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="20dp"
+
             android:text="프로젝트 이름"
             android:textAppearance="@style/contentFont2"
-            android:textSize="30sp"/>
+            android:textSize="33sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="기간 : "
+                android:textSize="25sp"
+                android:textAppearance="@style/contentFont3"/>
+
+            <TextView
+                android:id="@+id/tvSemester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                tools:text="학기"
+                android:textAppearance="@style/contentFont3"
+                android:textSize="25sp"/>
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tvProjectContents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="10dp"
-            android:padding="10dp"
+            android:layout_marginTop="20dp"
             android:gravity="start"
             tools:text="프로젝트 소개내용"
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
+            android:textSize="19sp"
+            android:textAppearance="@style/contentFont3"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="35dp"
             android:layout_marginBottom="5dp"
             android:text="오픈채팅방 주소"
             android:textAppearance="@style/contentFont2"
@@ -98,7 +111,7 @@
             android:layout_marginStart="5dp"
             android:padding="10dp"
             tools:text="채팅방 주소"
-            android:textSize="16sp"
-            android:textColor="@color/black"/>
+            android:textSize="19sp"
+            android:textAppearance="@style/contentFont3"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

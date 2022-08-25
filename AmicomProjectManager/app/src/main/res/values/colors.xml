@@ -10,4 +10,5 @@
     <color name="titleColor">#03045e</color>
     <color name="gray">#adb5bd</color>
     <color name="cardColor">#bde0fe</color>
+    <color name="red">#ef233c</color>
 </resources>

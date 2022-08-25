@@ -12,8 +12,10 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.mountain.amicomprojectmanager.databinding.ActivityAddProjectBinding
+import java.nio.charset.CoderResult
 
 class AddProjectActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityAddProjectBinding
@@ -49,20 +51,25 @@ class AddProjectActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         })
         binding.btnFinishAddProject.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            // TODO: intent 데이터를 보내기 전에, 자료형을 확실히 정해준다. ex) toString() 적용
-            // TODO: 각 spinner에서 선택된 값들을 곧바로 이용할 수 있다. spinner.selectedItem
-            intent.putExtra("year", binding.spinnerYear.selectedItem.toString())
-            intent.putExtra("semester", binding.spinnerSemester.selectedItem.toString())
-            intent.putExtra("projectName", binding.editProjectName.text.toString())
-            intent.putExtra("contents", binding.editContents.text.toString())
-            intent.putExtra("chatroom", binding.editChatroom.text.toString())
-            setResult(Activity.RESULT_OK, intent)
-            finish()
+            if (binding.editProjectName.text.toString() == "") {
+                Toast.makeText(this, "필수 기재사항을 확인해주세요", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val intent = Intent(this, MainActivity::class.java)
+                // TODO: intent 데이터를 보내기 전에, 자료형을 확실히 정해준다. ex) toString() 적용
+                // TODO: 각 spinner에서 선택된 값들을 곧바로 이용할 수 있다. spinner.selectedItem
+                intent.putExtra("year", binding.spinnerYear.selectedItem.toString())
+                intent.putExtra("semester", binding.spinnerSemester.selectedItem.toString())
+                intent.putExtra("projectName", binding.editProjectName.text.toString())
+                intent.putExtra("contents", binding.editContents.text.toString())
+                intent.putExtra("chatroom", binding.editChatroom.text.toString())
+                setResult(Activity.RESULT_OK, intent)
+                finish()
+            }
         }
         binding.btnGoBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            setResult(Activity.RESULT_OK, intent)
             finish()
         }
     }

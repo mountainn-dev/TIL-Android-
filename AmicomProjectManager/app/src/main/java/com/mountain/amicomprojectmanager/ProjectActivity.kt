@@ -1,5 +1,6 @@
 package com.mountain.amicomprojectmanager
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,7 +24,7 @@ class ProjectActivity : AppCompatActivity() {
         binding.tvChatroom.text = itemChatroom
         binding.btnGoBack.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            setResult(Activity.RESULT_OK, intent)
             finish()
         }
     }

@@ -30,9 +30,12 @@ class MainActivity : AppCompatActivity() {
                 val projectName = myData.getStringExtra("projectName")
                 val contents = myData.getStringExtra("contents")
                 val chatroom = myData.getStringExtra("chatroom")
-                projectList.add(projectList.size, Project("${year} ${semester}",
-                    "$projectName", "$contents", "$chatroom"))
-                mAdapter.updateList()
+            // TODO: 단순 startActivity()를 할 경우, result 데이터가 날아가기 때문에 goBack 코드와 맞춰주었다.
+                if (year != null) {
+                    projectList.add(projectList.size, Project("$year $semester",
+                        "$projectName", "$contents", "$chatroom"))
+                    mAdapter.updateList()
+                }
             }
         }
         binding.btnAddProject.setOnClickListener {
@@ -47,5 +50,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("itemChatroom", projectList[position].chatroom)
             startActivity(intent)
         }
+        // 뒤로가기의 경우, resultLauncher가 실행되지 않기 때문에, 해당 메서드를 실행해준다.
     }
 }
