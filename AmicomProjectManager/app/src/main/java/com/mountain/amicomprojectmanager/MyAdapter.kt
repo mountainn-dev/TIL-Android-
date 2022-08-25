@@ -35,4 +35,8 @@ class MyAdapter(private val context: Context, private val projectList: ArrayList
 
         return view
     }
+
+    fun updateList() {   // 리스트 데이터 갱신 메서드 구현
+        this.notifyDataSetChanged()
+    }
 }

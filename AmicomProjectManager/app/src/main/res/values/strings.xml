@@ -3,4 +3,5 @@
     <string name="club_name">AMICOM</string>
     <string name="add_sign">+</string>
     <string name="delete_sign">-</string>
+    <string name="go_back_sign">←</string>
 </resources>

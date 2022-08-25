@@ -1,5 +1,6 @@
 package com.mountain.amicomprojectmanager
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mountain.amicomprojectmanager.databinding.ActivityProjectBinding
@@ -11,7 +12,19 @@ class ProjectActivity : AppCompatActivity() {
         binding = ActivityProjectBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val cardSemester = intent.getStringExtra("cardSemester")
-//        binding.tvSemester.text = cardSemester
+        val itemSemester = intent.getStringExtra("itemSemester")
+        val itemProjectName = intent.getStringExtra("itemProjectName")
+        val itemContents = intent.getStringExtra("itemContents")
+        val itemChatroom = intent.getStringExtra("itemChatroom")
+
+        binding.tvSemester.text = itemSemester
+        binding.tvProjectName.text = itemProjectName
+        binding.tvProjectContents.text = itemContents
+        binding.tvChatroom.text = itemChatroom
+        binding.btnGoBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

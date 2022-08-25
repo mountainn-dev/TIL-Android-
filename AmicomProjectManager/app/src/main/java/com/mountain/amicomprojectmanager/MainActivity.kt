@@ -5,42 +5,47 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import com.mountain.amicomprojectmanager.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val projectList = arrayListOf<Project>(
-        Project("2022 1학기", "프로젝트1", "프로젝트 소개내용입니다. 간단하게 프로젝트 내용을 적어도 되고 계획을 적어도 되고 아무거나 적어도 돼요."),
-        Project("2022 2학기", "프로젝트2", "프로젝트 소개내용입니다. 간단하게 프로젝트 내용을 적어도 되고 계획을 적어도 되고 아무거나 적어도 돼요."),
-        Project("2023 1학기", "프로젝트3", "프로젝트 소개내용입니다. 간단하게 프로젝트 내용을 적어도 되고 계획을 적어도 되고 아무거나 적어도 돼요."),
-        Project("2023 2학기", "프로젝트4", "프로젝트 소개내용입니다. 간단하게 프로젝트 내용을 적어도 되고 계획을 적어도 되고 아무거나 적어도 돼요."),
-        Project("2022 1학기", "프로젝트5", "프로젝트 소개내용입니다. 간단하게 프로젝트 내용을 적어도 되고 계획을 적어도 되고 아무거나 적어도 돼요."),
-
-    )
-
+    private lateinit var myData: Intent
+    private val projectList = arrayListOf<Project>()
+    private val mAdapter = MyAdapter(this, projectList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        // 재적용은 최적화에 좋지 않기 때문에 onCreate에서 어댑터 적용을 한 번만 해준다.
+        binding.lvProject.adapter = mAdapter
 
-        val semester = intent.getStringExtra("semester").toString()
-        val projectName = intent.getStringExtra("projectName").toString()
-        val contents = intent.getStringExtra("contents").toString()
-        val chatroom = intent.getStringExtra("chatroom").toString()
-        projectList.add(projectList.size, Project("$semester", "$projectName", "$contents"))
+        val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            result -> if(result.resultCode == Activity.RESULT_OK) {
+                myData = result.data ?: return@registerForActivityResult
+                val year = myData.getStringExtra("year")
+                val semester = myData.getStringExtra("semester")
+                val projectName = myData.getStringExtra("projectName")
+                val contents = myData.getStringExtra("contents")
+                val chatroom = myData.getStringExtra("chatroom")
+                projectList.add(projectList.size, Project("${year} ${semester}",
+                    "$projectName", "$contents", "$chatroom"))
+                mAdapter.updateList()
+            }
+        }
         binding.btnAddProject.setOnClickListener {
             val intent = Intent(this, AddProjectActivity::class.java)
-            startActivity(intent)
-            finish()
+            resultLauncher.launch(intent)
         }
-        binding.lvProject.adapter = MyAdapter(this, projectList)
-//        val card = findViewById<CardView>(R.id.cv)   // TODO: 카드뷰 선택 후 컨텐츠 소개 구현 필요
-//        val cardSemester = findViewById<TextView>(R.id.tvCardSemester)
-//        card.setOnClickListener {
-//            val intent2 = Intent(this, ProjectActivity::class.java)
-//            intent2.putExtra("cardSemester", cardSemester.text)
-//        }
+        binding.lvProject.setOnItemClickListener { _, _, position, _ ->
+            val intent = Intent(this, ProjectActivity::class.java)
+            intent.putExtra("itemSemester", projectList[position].semester)
+            intent.putExtra("itemProjectName", projectList[position].projectName)
+            intent.putExtra("itemContents", projectList[position].contents)
+            intent.putExtra("itemChatroom", projectList[position].chatroom)
+            startActivity(intent)
+        }
     }
 }
