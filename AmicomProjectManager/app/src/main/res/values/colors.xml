@@ -11,4 +11,5 @@
     <color name="gray">#adb5bd</color>
     <color name="cardColor">#bde0fe</color>
     <color name="red">#ef233c</color>
+    <color name="lightGray">#dee2e6</color>
 </resources>

@@ -4,9 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import com.mountain.amicomprojectmanager.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 
@@ -19,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        if (projectList.size == 0) binding.btnAddProjectGuider.isVisible = true
+        val delete = findViewById<Button>(R.id.btnDelete)
         // 재적용은 최적화에 좋지 않기 때문에 onCreate에서 어댑터 적용을 한 번만 해준다.
         binding.lvProject.adapter = mAdapter
-
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result -> if(result.resultCode == Activity.RESULT_OK) {
                 myData = result.data ?: return@registerForActivityResult
@@ -31,14 +36,20 @@ class MainActivity : AppCompatActivity() {
                 val contents = myData.getStringExtra("contents")
                 val chatroom = myData.getStringExtra("chatroom")
             // TODO: 단순 startActivity()를 할 경우, result 데이터가 날아가기 때문에 goBack 코드와 맞춰주었다.
+            //  result데이터가 날아가는게 아니라, startActivity()자체가 기존 액티비티를 새롭게 여는 메서드이다.
                 if (year != null) {
                     projectList.add(projectList.size, Project("$year $semester",
                         "$projectName", "$contents", "$chatroom"))
                     mAdapter.updateList()
                 }
+                if (projectList.size != 0) binding.btnAddProjectGuider.isVisible = false
             }
         }
         binding.btnAddProject.setOnClickListener {
+            val intent = Intent(this, AddProjectActivity::class.java)
+            resultLauncher.launch(intent)
+        }
+        binding.btnAddProjectGuider.setOnClickListener {
             val intent = Intent(this, AddProjectActivity::class.java)
             resultLauncher.launch(intent)
         }
@@ -50,6 +61,6 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("itemChatroom", projectList[position].chatroom)
             startActivity(intent)
         }
-        // 뒤로가기의 경우, resultLauncher가 실행되지 않기 때문에, 해당 메서드를 실행해준다.
+        delete.setOnClickListener {  }
     }
 }

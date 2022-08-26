@@ -68,8 +68,6 @@ class AddProjectActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         }
         binding.btnGoBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            setResult(Activity.RESULT_OK, intent)
             finish()
         }
     }

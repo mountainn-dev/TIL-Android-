@@ -30,10 +30,23 @@
             android:background="@android:color/transparent"
             android:text="@string/add_sign"
             android:textSize="40sp"
-            android:textColor="@color/gray"
-            />
+            android:textColor="@color/gray" />
     </androidx.appcompat.widget.Toolbar>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddProjectGuider"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/background_guider"
+        android:visibility="gone"
+        android:text="@string/add_sign"
+        android:textColor="@color/white"
+        android:textSize="50sp"
+
+        app:layout_constraintTop_toBottomOf="@id/tb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
     <ListView
         android:id="@+id/lvProject"
         android:layout_width="match_parent"
@@ -44,7 +57,7 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tb"></ListView>
+        app:layout_constraintTop_toBottomOf="@id/btnAddProjectGuider"></ListView>
 
 
 

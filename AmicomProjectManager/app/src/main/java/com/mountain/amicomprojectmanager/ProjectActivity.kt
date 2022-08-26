@@ -23,8 +23,6 @@ class ProjectActivity : AppCompatActivity() {
         binding.tvProjectContents.text = itemContents
         binding.tvChatroom.text = itemChatroom
         binding.btnGoBack.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            setResult(Activity.RESULT_OK, intent)
             finish()
         }
     }
