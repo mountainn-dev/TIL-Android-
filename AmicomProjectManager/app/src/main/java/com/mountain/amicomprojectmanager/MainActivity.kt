@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -12,11 +13,12 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.mountain.amicomprojectmanager.databinding.ActivityMainBinding
 import org.w3c.dom.Text
+import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var myData: Intent
-    private val projectList = arrayListOf<Project>()
+    private var projectList = arrayListOf<Project>()
     private val mAdapter = MyAdapter(this, projectList)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (projectList.size == 0) binding.btnAddProjectGuider.isVisible = true
-        val delete = findViewById<Button>(R.id.btnDelete)
         // 재적용은 최적화에 좋지 않기 때문에 onCreate에서 어댑터 적용을 한 번만 해준다.
         binding.lvProject.adapter = mAdapter
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -61,6 +62,8 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("itemChatroom", projectList[position].chatroom)
             startActivity(intent)
         }
-        delete.setOnClickListener {  }
+        val deleteProject = findViewById<Button>(R.id.btnDelete)
+        val deleteAnim = AnimationUtils.loadAnimation(this, R.anim.aniamtion_remove_card)
+
     }
 }
