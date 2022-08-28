@@ -19,7 +19,7 @@ import java.nio.charset.CoderResult
 
 class AddProjectActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: ActivityAddProjectBinding
-    private val listYear = arrayOf("2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030")
+    private val listYear = arrayOf("2022", "2023", "2024")
     private val listSemester = arrayOf("1학기", "2학기")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +51,7 @@ class AddProjectActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         })
         binding.btnFinishAddProject.setOnClickListener {
-            if (binding.editProjectName.text.toString() == "") {
+            if (binding.editProjectName.text.trim().toString() == "") {
                 Toast.makeText(this, "필수 기재사항을 확인해주세요", Toast.LENGTH_SHORT).show()
             }
             else {

@@ -62,8 +62,5 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("itemChatroom", projectList[position].chatroom)
             startActivity(intent)
         }
-        val deleteProject = findViewById<Button>(R.id.btnDelete)
-        val deleteAnim = AnimationUtils.loadAnimation(this, R.anim.aniamtion_remove_card)
-
     }
 }

@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 
 class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>) : BaseAdapter() {
     override fun getCount(): Int {
@@ -32,18 +33,16 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
         val projectName = view.findViewById<TextView>(R.id.tvProjectName)
         val contents = view.findViewById<TextView>(R.id.tvContents)
         val deleteProject = view.findViewById<Button>(R.id.btnDelete)
-        val card = view.findViewById<CardView>(R.id.cv)
 
         // arrayList의 순번을 돌려가면서 데이터를 view에 할당해준다.
         semester.text = projectList[position].semester
         projectName.text = projectList[position].projectName
         contents.text = projectList[position].contents
         deleteProject.setOnClickListener {
-            val removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
-            view.animation = removeAnim
-            Toast.makeText(MyApplication.ApplicationContext(), "Toast: $removeAnim", Toast.LENGTH_SHORT).show()
-//            removeProject(projectList, position)
-//            updateList()
+            var removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
+            view.startAnimation(removeAnim)
+            removeProject(projectList, position)
+            updateList()
         }
 
         return view
