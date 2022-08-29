@@ -10,10 +10,12 @@ import android.widget.BaseAdapter
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.cardview.widget.CardView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import java.util.logging.Handler
+import android.os.CountDownTimer as CountDownTimer1
 
-class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>) : BaseAdapter() {
+class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>) : BaseAdapter(){
     override fun getCount(): Int {
         return projectList.size
     }
@@ -38,13 +40,30 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
         semester.text = projectList[position].semester
         projectName.text = projectList[position].projectName
         contents.text = projectList[position].contents
+
         deleteProject.setOnClickListener {
             var removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
-            view.startAnimation(removeAnim)
-            removeProject(projectList, position)
-            updateList()
-        }
 
+            removeAnim.setAnimationListener(object: Animation.AnimationListener {
+                override fun onAnimationStart(p0: Animation?) {
+                }
+                override fun onAnimationEnd(p0: Animation?) {
+                    removeProject(projectList, position)
+                    updateList()
+                    // TODO: 프로젝트 삭제 후 프로젝트가 없을 때 가이드버튼 재생성 코드 구현 필요
+                    if(projectList.size == 0) {
+
+                    }
+                }
+                override fun onAnimationRepeat(p0: Animation?) {
+                }
+            })
+
+            view.startAnimation(removeAnim)
+//            // TODO: 애니메이션 시작으로부터 일정시간 이후 진행될 코드를 Handler.postDelayed()메서드로 작성
+//            val a = android.os.Handler()
+//            a.postDelayed(}, 500)
+        }
         return view
     }
 
@@ -52,7 +71,7 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
         this.notifyDataSetChanged()
     }
 
-    fun removeProject(arr: ArrayList<Project>, index: Int) : ArrayList<Project> {
+    private fun removeProject(arr: ArrayList<Project>, index: Int) : ArrayList<Project> {
         arr.removeAt(index)
         return arr
     }

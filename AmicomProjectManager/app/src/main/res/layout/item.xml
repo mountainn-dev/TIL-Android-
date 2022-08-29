@@ -22,7 +22,8 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-5dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvSemester"
@@ -58,7 +59,7 @@
                 tools:text="프로젝트 이름"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:textSize="43sp"
+                android:textSize="38sp"
                 android:textAppearance="@style/contentFont1"/>
 
             <TextView
