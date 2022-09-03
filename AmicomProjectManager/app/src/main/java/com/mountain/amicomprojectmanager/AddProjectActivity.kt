@@ -14,6 +14,8 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.mountain.amicomprojectmanager.databinding.ActivityAddProjectBinding
 import java.nio.charset.CoderResult
 
@@ -21,6 +23,7 @@ class AddProjectActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
     private lateinit var binding: ActivityAddProjectBinding
     private val listYear = arrayOf("2022", "2023", "2024")
     private val listSemester = arrayOf("1학기", "2학기")
+    private val mAuth = Firebase.auth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddProjectBinding.inflate(layoutInflater)
@@ -51,21 +54,29 @@ class AddProjectActivity : AppCompatActivity(), AdapterView.OnItemSelectedListen
             }
         })
         binding.btnFinishAddProject.setOnClickListener {
-            if (binding.editProjectName.text.trim().toString() == "") {
-                Toast.makeText(this, "필수 기재사항을 확인해주세요", Toast.LENGTH_SHORT).show()
+            if (mAuth.currentUser!!.uid != "UdpZZMIA7mhbg5bX5R9eYAXFzpn2") {
+                Toast.makeText(this,
+                    "프로젝트 생성은 관리자 계정으로만 가능합니다. 동아리에 문의해주세요.",
+                    Toast.LENGTH_SHORT).show()
             }
             else {
-                val intent = Intent(this, MainActivity::class.java)
-                // TODO: intent 데이터를 보내기 전에, 자료형을 확실히 정해준다. ex) toString() 적용
-                // TODO: 각 spinner에서 선택된 값들을 곧바로 이용할 수 있다. spinner.selectedItem
-                intent.putExtra("year", binding.spinnerYear.selectedItem.toString())
-                intent.putExtra("semester", binding.spinnerSemester.selectedItem.toString())
-                intent.putExtra("projectName", binding.editProjectName.text.toString())
-                intent.putExtra("contents", binding.editContents.text.toString())
-                intent.putExtra("chatroom", binding.editChatroom.text.toString())
-                setResult(Activity.RESULT_OK, intent)
-                finish()
+                if (binding.editProjectName.text.trim().toString() == "") {
+                    binding.tvWrongMessage.text = "필수 입력사항을 확인해주세요."
+                }
+                else {
+                    val intent = Intent(this, MainActivity::class.java)
+                    // TODO: intent 데이터를 보내기 전에, 자료형을 확실히 정해준다. ex) toString() 적용
+                    // TODO: 각 spinner에서 선택된 값들을 곧바로 이용할 수 있다. spinner.selectedItem
+                    intent.putExtra("year", binding.spinnerYear.selectedItem.toString())
+                    intent.putExtra("semester", binding.spinnerSemester.selectedItem.toString())
+                    intent.putExtra("projectName", binding.editProjectName.text.toString())
+                    intent.putExtra("contents", binding.editContents.text.toString())
+                    intent.putExtra("chatroom", binding.editChatroom.text.toString())
+                    setResult(Activity.RESULT_OK, intent)
+                    finish()
+                }
             }
+
         }
         binding.btnGoBack.setOnClickListener {
             finish()

@@ -12,10 +12,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.logging.Handler
 import android.os.CountDownTimer as CountDownTimer1
 
 class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>) : BaseAdapter(){
+    private val mAuth = Firebase.auth
     override fun getCount(): Int {
         return projectList.size
     }
@@ -42,27 +45,33 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
         contents.text = projectList[position].contents
 
         deleteProject.setOnClickListener {
-            var removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
+            if (mAuth.currentUser!!.uid != "UdpZZMIA7mhbg5bX5R9eYAXFzpn2") {
+                Toast.makeText(MyApplication.ApplicationContext(),
+                    "프로젝트 삭제는 관리자 계정으로만 가능합니다. 동아리에 문의해주세요.",
+                    Toast.LENGTH_SHORT).show()
+            } else {
+                var removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
 
-            removeAnim.setAnimationListener(object: Animation.AnimationListener {
-                override fun onAnimationStart(p0: Animation?) {
-                }
-                override fun onAnimationEnd(p0: Animation?) {
-                    removeProject(projectList, position)
-                    updateList()
-                    // TODO: 프로젝트 삭제 후 프로젝트가 없을 때 가이드버튼 재생성 코드 구현 필요
-                    if(projectList.size == 0) {
-
+                removeAnim.setAnimationListener(object: Animation.AnimationListener {
+                    override fun onAnimationStart(p0: Animation?) {
                     }
-                }
-                override fun onAnimationRepeat(p0: Animation?) {
-                }
-            })
+                    override fun onAnimationEnd(p0: Animation?) {
+                        removeProject(projectList, position)
+                        updateList()
+                        // TODO: 프로젝트 삭제 후 프로젝트가 없을 때 가이드버튼 재생성 코드 구현 필요
+                        if(projectList.size == 0) {
 
-            view.startAnimation(removeAnim)
+                        }
+                    }
+                    override fun onAnimationRepeat(p0: Animation?) {
+                    }
+                })
+
+                view.startAnimation(removeAnim)
 //            // TODO: 애니메이션 시작으로부터 일정시간 이후 진행될 코드를 Handler.postDelayed()메서드로 작성
 //            val a = android.os.Handler()
 //            a.postDelayed(}, 500)
+            }
         }
         return view
     }

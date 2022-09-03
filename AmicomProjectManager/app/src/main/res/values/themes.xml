@@ -15,7 +15,6 @@
     </style>
     <style name="titleFont">
         <item name="android:fontFamily">@font/brlnsr</item>
-        <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/titleColor</item>
     </style>
     <style name="contentFont1">
@@ -30,4 +29,9 @@
         <item name="android:fontFamily">@font/micegothic</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="tipFont">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
 </resources>

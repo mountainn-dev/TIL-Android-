@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="@string/club_name"
+            android:textSize="30sp"
             android:textAppearance="@style/titleFont" />
 
         <Button

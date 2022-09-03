@@ -4,9 +4,14 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.mountain.amicomprojectmanager.databinding.ActivityMainBinding
 import org.w3c.dom.Text
 import java.util.ArrayList
@@ -14,6 +19,7 @@ import java.util.ArrayList
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var myData: Intent
+    private val mAuth = Firebase.auth
     private var projectList = arrayListOf<Project>()
     private val mAdapter = MyAdapter(this, projectList)
     override fun onCreate(savedInstanceState: Bundle?) {

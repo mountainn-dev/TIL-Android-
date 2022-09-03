@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:text="Project Contents"
+            android:textSize="30sp"
             android:textAppearance="@style/titleFont" />
 
     </androidx.appcompat.widget.Toolbar>
