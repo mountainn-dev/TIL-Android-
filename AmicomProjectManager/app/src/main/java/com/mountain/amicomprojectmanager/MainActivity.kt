@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         if (projectList.size == 0) binding.btnAddProjectGuider.isVisible = true
-        // 재적용은 최적화에 좋지 않기 때문에 onCreate에서 어댑터 적용을 한 번만 해준다.
+        // 재적용은 최적화에 좋지 않기 때문에 onCreate 에서 어댑터 적용을 한 번만 해준다.
         binding.lvProject.adapter = mAdapter
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             result -> if(result.resultCode == Activity.RESULT_OK) {
