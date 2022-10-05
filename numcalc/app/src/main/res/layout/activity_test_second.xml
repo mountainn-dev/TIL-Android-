@@ -25,6 +25,15 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvPercent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:layout_margin="20dp"
+                android:textSize="35sp"
+                android:textColor="@color/btnDarkGray"/>
+
+            <TextView
                 android:id="@+id/tvNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

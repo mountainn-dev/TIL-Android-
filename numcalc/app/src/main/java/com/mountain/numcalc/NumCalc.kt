@@ -3,6 +3,7 @@ package com.mountain.numcalc
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import org.w3c.dom.Text
 
 object NumCalc {
     // TODO: 연산기능을 위해 저장될 숫자 공간을 메서드 안에서 선언할 경우
@@ -72,14 +73,16 @@ object NumCalc {
             text.text = "$mResult"
         }
     }
-    fun selectPercent(text: TextView) {
+    fun selectPercent(text: TextView, percent: TextView) {
         val number = text.text.toString().toInt()
         if (!mPercent) {
             text.text = (number * 100).toString()
+            percent.text = "%"
             mPercent = true
         }
         else {
             text.text = (number / 100).toString()
+            percent.text = ""
             mPercent = false
         }
     }
