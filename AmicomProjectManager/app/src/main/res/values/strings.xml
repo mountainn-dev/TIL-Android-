@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AmicomProjectManager</string>
+    <string name="app_name">Amicom ProjectManager</string>
     <string name="club_name">AMICOM</string>
     <string name="add_sign">+</string>
     <string name="delete_sign">-</string>
