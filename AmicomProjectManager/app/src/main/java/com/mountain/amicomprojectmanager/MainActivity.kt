@@ -4,22 +4,18 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mountain.amicomprojectmanager.databinding.ActivityMainBinding
-import org.w3c.dom.Text
-import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var myData: Intent
-    private val mAuth = Firebase.auth
+    private val database: DatabaseReference = Firebase.database.reference
     private var projectList = arrayListOf<Project>()
     private val mAdapter = MyAdapter(this, projectList)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,9 +37,11 @@ class MainActivity : AppCompatActivity() {
             // TODO: 단순 startActivity()를 할 경우, result 데이터가 날아가기 때문에 goBack 코드와 맞춰주었다.
             //  result데이터가 날아가는게 아니라, startActivity()자체가 기존 액티비티를 새롭게 여는 메서드이다.
                 if (year != null) {
-                    projectList.add(projectList.size, Project("$year $semester",
-                        "$projectName", "$contents", "$chatroom"))
+                    val projectdata = Project("$year $semester",
+                        "$projectName", "$contents", "$chatroom")
+                    projectList.add(projectList.size, projectdata)
                     mAdapter.updateList()
+                    database.child("ProjectList").push().setValue(projectdata)
                 }
                 if (projectList.size != 0) binding.btnAddProjectGuider.isVisible = false
             }

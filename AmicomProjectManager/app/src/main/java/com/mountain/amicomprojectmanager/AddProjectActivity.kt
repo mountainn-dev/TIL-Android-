@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.mountain.amicomprojectmanager.databinding.ActivityAddProjectBinding
 import java.nio.charset.CoderResult

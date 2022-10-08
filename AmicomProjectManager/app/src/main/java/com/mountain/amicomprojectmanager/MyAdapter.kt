@@ -50,7 +50,7 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
                     "프로젝트 삭제는 관리자 계정으로만 가능합니다. 동아리에 문의해주세요.",
                     Toast.LENGTH_SHORT).show()
             } else {
-                var removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
+                val removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
 
                 removeAnim.setAnimationListener(object: Animation.AnimationListener {
                     override fun onAnimationStart(p0: Animation?) {
@@ -60,13 +60,11 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
                         updateList()
                         // TODO: 프로젝트 삭제 후 프로젝트가 없을 때 가이드버튼 재생성 코드 구현 필요
                         if(projectList.size == 0) {
-
                         }
                     }
                     override fun onAnimationRepeat(p0: Animation?) {
                     }
                 })
-
                 view.startAnimation(removeAnim)
 //            // TODO: 애니메이션 시작으로부터 일정시간 이후 진행될 코드를 Handler.postDelayed()메서드로 작성
 //            val a = android.os.Handler()
