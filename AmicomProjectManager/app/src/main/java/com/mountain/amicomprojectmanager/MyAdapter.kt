@@ -13,12 +13,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.logging.Handler
 import android.os.CountDownTimer as CountDownTimer1
 
 class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>) : BaseAdapter(){
     private val mAuth = Firebase.auth
+    private val database: DatabaseReference = Firebase.database.reference
+
     override fun getCount(): Int {
         return projectList.size
     }
@@ -58,6 +62,7 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
                     override fun onAnimationEnd(p0: Animation?) {
                         removeProject(projectList, position)
                         updateList()
+                        database.child("ProjectList").child("$position").removeValue()
                         // TODO: 프로젝트 삭제 후 프로젝트가 없을 때 가이드버튼 재생성 코드 구현 필요
                         if(projectList.size == 0) {
                         }
