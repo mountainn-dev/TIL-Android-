@@ -17,10 +17,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var myData: Intent
     private lateinit var project: Project
     private val database: DatabaseReference = Firebase.database.reference
-    private var projectList = arrayListOf<Project>()
+    private val projectList = arrayListOf<Project>()
     private val projectKeyList = arrayListOf<String>()
     private val mAdapter = MyAdapter(this, projectList, projectKeyList)
-    private var ab = "ab"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -28,15 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         // TODO: db 에서 플젝 키리스트 불러오고 해당 리스트 인덱싱해서 value 가져오는 코드 구현
         val myListener = object : ValueEventListener {
-            // TODO: 왜인지는 모르겠으나, onDataChange 로 액티비티 생성 단계에서 초기 데이터를 불러올 수가 있다.
+            // TODO: onDataChange 로 액티비티 생성 단계에서 초기 데이터를 불러올 수가 있다. - by 파이어베이스 공식문서
             override fun onDataChange(snapshot: DataSnapshot) {
                 val snapProjectKeyList = snapshot.child("ProjectKeyList").children
 
                 // db 프로젝트 키 string 값 호출 및 리스트 할당
                 for (i in snapProjectKeyList) {
                     projectKeyList.add(i.value.toString())
-                    // TODO: 인덱싱한 키 리스트 값으로 프로젝트 리스트 벨류 가져오기 코드 구현
-                    ab = "abc"
                 }
 
                 // 생성된 리스트로 매핑 실시
@@ -60,18 +57,17 @@ class MainActivity : AppCompatActivity() {
                     projectList.add(project)
                 }
                 mAdapter.updateList()
-                Log.i("info2", "$projectKeyList")
+                if (projectList.size == 0) binding.btnAddProjectGuider.isVisible = true
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         }
         // TODO: info 와 info2 의 결과값도 다르고, projectKeyList 할당도 유지가 안 된다....왜?
-        Log.i("info", "$projectKeyList")
+        //  유지는 MainActivitiy() 객체를 잘못 만들어서 그렇고, info 결과값은 onDataChange 실행 순서가 달랐음
         database.addValueEventListener(myListener)
 
         // TODO: 무조건 리스트는 생성이 되는 것 같은데, db에 데이터가 없을 때 사이즈 말고 가이더를 띄우게 할 만한 다른 조건이 있을까
-        if (projectList.size != 0) binding.btnAddProjectGuider.isVisible = false
         // 재적용은 최적화에 좋지 않기 때문에 onCreate 에서 어댑터 적용을 한 번만 해준다.
         binding.lvProject.adapter = mAdapter
         val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -90,7 +86,6 @@ class MainActivity : AppCompatActivity() {
                     projectList.add(projectList.size, projectData)
                     mAdapter.updateList()
                     // 리스트 전체를 덮어씌우지 않고, 개별 프로젝트 1개를 추가해준다.
-                    database.removeEventListener(myListener)
                     database.child("ProjectList").push().setValue(projectData)
                     val dbListener = object : ChildEventListener {
                         override fun onChildAdded(
@@ -137,10 +132,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.btnAddProject.setOnClickListener {
+            database.removeEventListener(myListener)
             val intent = Intent(this, AddProjectActivity::class.java)
             resultLauncher.launch(intent)
         }
         binding.btnAddProjectGuider.setOnClickListener {
+            database.removeEventListener(myListener)
             val intent = Intent(this, AddProjectActivity::class.java)
             resultLauncher.launch(intent)
         }
@@ -152,8 +149,5 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("itemChatroom", projectList[position].chatroom)
             startActivity(intent)
         }
-    }
-    public fun removeListener(ref: DatabaseReference,listener: ValueEventListener) {
-
     }
 }

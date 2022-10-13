@@ -15,12 +15,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import java.util.logging.Handler
 import android.os.CountDownTimer as CountDownTimer1
 
-class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>, private var projectKeyList: ArrayList<String>) : BaseAdapter(){
+class MyAdapter(
+    private val context: Context,
+    private val projectList: ArrayList<Project>,
+    private val projectKeyList: ArrayList<String>,
+    ) : BaseAdapter(){
+
     private val mAuth = Firebase.auth
     private val database: DatabaseReference = Firebase.database.reference
 
@@ -65,6 +71,7 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
                         removeProject(projectList, position)
                         updateList()
                         database.child("ProjectList").child(projectKeyList[position]).removeValue()
+                        database.child("ProjectKeyList").child("$position").removeValue()
                         // TODO: 애니메이션 종료 후 해당 position을 key 리스트 인덱스로 사용하여 db의 데이터 삭제 기능 구현 필요
                         // TODO: 프로젝트 삭제 후 프로젝트가 없을 때 가이드버튼 재생성 코드 구현 필요
                     }
