@@ -1,6 +1,7 @@
 package com.mountain.amicomprojectmanager
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ import com.google.firebase.ktx.Firebase
 import java.util.logging.Handler
 import android.os.CountDownTimer as CountDownTimer1
 
-class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>) : BaseAdapter(){
+class MyAdapter(private val context: Context, private var projectList: ArrayList<Project>, private var projectKeyList: ArrayList<String>) : BaseAdapter(){
     private val mAuth = Firebase.auth
     private val database: DatabaseReference = Firebase.database.reference
 
@@ -56,17 +57,16 @@ class MyAdapter(private val context: Context, private var projectList: ArrayList
             } else {
                 val removeAnim = AnimationUtils.loadAnimation(MyApplication.ApplicationContext(), R.anim.aniamtion_remove_card)
 
+                // 애니메이션이 끝나는 동시에 프로젝트 리스트를 갱신하기 위해 onAnimationEnd 리스너를 설정한다.
                 removeAnim.setAnimationListener(object: Animation.AnimationListener {
                     override fun onAnimationStart(p0: Animation?) {
                     }
                     override fun onAnimationEnd(p0: Animation?) {
                         removeProject(projectList, position)
                         updateList()
-                        val a = MainActivity()
+                        database.child("ProjectList").child(projectKeyList[position]).removeValue()
                         // TODO: 애니메이션 종료 후 해당 position을 key 리스트 인덱스로 사용하여 db의 데이터 삭제 기능 구현 필요
                         // TODO: 프로젝트 삭제 후 프로젝트가 없을 때 가이드버튼 재생성 코드 구현 필요
-                        if(projectList.size == 0) {
-                        }
                     }
                     override fun onAnimationRepeat(p0: Animation?) {
                     }

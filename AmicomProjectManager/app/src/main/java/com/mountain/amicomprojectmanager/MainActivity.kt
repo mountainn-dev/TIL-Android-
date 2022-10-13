@@ -18,9 +18,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var project: Project
     private val database: DatabaseReference = Firebase.database.reference
     private var projectList = arrayListOf<Project>()
-    private var projectKeyList = arrayListOf<String>()
-    private var isFirst = true
-    private val mAdapter = MyAdapter(this, projectList)
+    private val projectKeyList = arrayListOf<String>()
+    private val mAdapter = MyAdapter(this, projectList, projectKeyList)
+    private var ab = "ab"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -30,44 +30,47 @@ class MainActivity : AppCompatActivity() {
         val myListener = object : ValueEventListener {
             // TODO: 왜인지는 모르겠으나, onDataChange 로 액티비티 생성 단계에서 초기 데이터를 불러올 수가 있다.
             override fun onDataChange(snapshot: DataSnapshot) {
-                // 리스너를 remove하지 않고, 조건문을 걸어 액티비티 생성 이후에는 작동하지 않도록 작성했다.
-                if (isFirst) {
-                    val snapProjectKeyList = snapshot.child("ProjectKeyList").children
+                val snapProjectKeyList = snapshot.child("ProjectKeyList").children
 
-                    // db 프로젝트 키 string 값 호출 및 리스트 할당
-                    for (i in snapProjectKeyList) {
-                        projectKeyList.add(i.value.toString())
-                        // TODO: 인덱싱한 키 리스트 값으로 프로젝트 리스트 벨류 가져오기 코드 구현
-                    }
-
-                    // 생성된 리스트로 매핑 실시
-                    for (j in 0 until projectKeyList.size) {
-                        var contents = snapshot.child("ProjectList")
-                            .child("${projectKeyList[j]}").child("contents").value
-                        var chatroom = snapshot.child("ProjectList")
-                            .child("${projectKeyList[j]}").child("chatroom").value
-                        var semester = snapshot.child("ProjectList")
-                            .child("${projectKeyList[j]}").child("semester").value
-                        var projectName = snapshot.child("ProjectList")
-                            .child("${projectKeyList[j]}").child("projectName").value
-                        project = Project(
-                            "$semester",
-                            "$projectName",
-                            "$contents",
-                            "$chatroom"
-                        )
-                        projectList.add(project)
-                    }
-                    mAdapter.updateList()
-                    isFirst = false
+                // db 프로젝트 키 string 값 호출 및 리스트 할당
+                for (i in snapProjectKeyList) {
+                    projectKeyList.add(i.value.toString())
+                    // TODO: 인덱싱한 키 리스트 값으로 프로젝트 리스트 벨류 가져오기 코드 구현
+                    ab = "abc"
                 }
+
+                // 생성된 리스트로 매핑 실시
+                for (j in 0 until projectKeyList.size) {
+                    val contents = snapshot.child("ProjectList")
+                        .child(projectKeyList[j]).child("contents").value
+                    val chatroom = snapshot.child("ProjectList")
+                        .child(projectKeyList[j]).child("chatroom").value
+                    val semester = snapshot.child("ProjectList")
+                        .child(projectKeyList[j]).child("semester").value
+                    val projectName = snapshot.child("ProjectList")
+                        .child(projectKeyList[j]).child("projectName").value
+
+                    // 매핑 이후 프로젝트 객체 생성, 프로젝트 리스트에 할당
+                    project = Project(
+                        "$semester",
+                        "$projectName",
+                        "$contents",
+                        "$chatroom"
+                    )
+                    projectList.add(project)
+                }
+                mAdapter.updateList()
+                Log.i("info2", "$projectKeyList")
             }
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
         }
+        // TODO: info 와 info2 의 결과값도 다르고, projectKeyList 할당도 유지가 안 된다....왜?
+        Log.i("info", "$projectKeyList")
         database.addValueEventListener(myListener)
 
+        // TODO: 무조건 리스트는 생성이 되는 것 같은데, db에 데이터가 없을 때 사이즈 말고 가이더를 띄우게 할 만한 다른 조건이 있을까
         if (projectList.size != 0) binding.btnAddProjectGuider.isVisible = false
         // 재적용은 최적화에 좋지 않기 때문에 onCreate 에서 어댑터 적용을 한 번만 해준다.
         binding.lvProject.adapter = mAdapter
@@ -87,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                     projectList.add(projectList.size, projectData)
                     mAdapter.updateList()
                     // 리스트 전체를 덮어씌우지 않고, 개별 프로젝트 1개를 추가해준다.
+                    database.removeEventListener(myListener)
                     database.child("ProjectList").push().setValue(projectData)
                     val dbListener = object : ChildEventListener {
                         override fun onChildAdded(
@@ -149,8 +153,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    public fun removeListener(ref: DatabaseReference,listener: ValueEventListener) {
 
-    public fun getProjectKeyList(): ArrayList<String> {
-        return projectKeyList
     }
 }
