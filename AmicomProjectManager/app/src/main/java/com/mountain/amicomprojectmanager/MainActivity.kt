@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() {
         }
         // TODO: info 와 info2 의 결과값도 다르고, projectKeyList 할당도 유지가 안 된다....왜?
         //  유지는 MainActivitiy() 객체를 잘못 만들어서 그렇고, info 결과값은 onDataChange 실행 순서가 달랐음
-        database.addValueEventListener(myListener)
+        database.addListenerForSingleValueEvent(myListener)
 
         // TODO: 무조건 리스트는 생성이 되는 것 같은데, db에 데이터가 없을 때 사이즈 말고 가이더를 띄우게 할 만한 다른 조건이 있을까
         // 재적용은 최적화에 좋지 않기 때문에 onCreate 에서 어댑터 적용을 한 번만 해준다.
@@ -132,12 +133,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         binding.btnAddProject.setOnClickListener {
-            database.removeEventListener(myListener)
             val intent = Intent(this, AddProjectActivity::class.java)
             resultLauncher.launch(intent)
         }
         binding.btnAddProjectGuider.setOnClickListener {
-            database.removeEventListener(myListener)
             val intent = Intent(this, AddProjectActivity::class.java)
             resultLauncher.launch(intent)
         }

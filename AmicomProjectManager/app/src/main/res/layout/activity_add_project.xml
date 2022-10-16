@@ -184,7 +184,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:maxLength="30"
+            android:maxLength="45"
             android:inputType="text"
             android:hint="주소를 입력해주세요."/>
     </LinearLayout>
